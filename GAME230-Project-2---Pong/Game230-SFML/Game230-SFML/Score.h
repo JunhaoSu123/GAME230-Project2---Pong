@@ -11,3 +11,4 @@ private:
 	int points;
 };
 extern bool win;
+extern bool whoWon;

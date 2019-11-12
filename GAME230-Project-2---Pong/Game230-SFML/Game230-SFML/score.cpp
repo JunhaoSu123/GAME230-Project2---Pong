@@ -1,4 +1,5 @@
 #include "Score.h"
+#include "GameObject.h"
 
 score::score(sf::Font &font, unsigned int size):sf::Text("Score: 0", font, size) {
 	this->points = 0;

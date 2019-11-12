@@ -51,7 +51,7 @@ void main_menu::Update(sf::RenderWindow* window) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)) {
 		switch (this->ButtonSelect) {
 		case 0:
-			Ai = true;
+			//Ai = true;
 			break;
 		case 1:
 			coreState.SetState(new game_play());

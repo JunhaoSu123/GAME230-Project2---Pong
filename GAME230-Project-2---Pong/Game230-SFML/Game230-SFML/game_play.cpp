@@ -2,7 +2,7 @@
 #include"Main_Menu.h"
 #include"Game_Play.h"
 #include"Score.h"
-
+#include"WinState.h"
 bool win = false;
 void game_play::Initialize(sf::RenderWindow* window) {
 	this->font = new sf::Font();
@@ -32,7 +32,8 @@ void game_play::Update(sf::RenderWindow* window) {
 		coreState.SetState(new main_menu());
 	}
 	if (win) {
-		coreState.SetState(new main_menu());
+
+		coreState.SetState(new win_state());
 	}
 }
 void game_play::Render(sf::RenderWindow* window) {

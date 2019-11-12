@@ -2,7 +2,9 @@
 #include"Score.h"
 #include"Game_State.h"
 #include"Main_Menu.h"
+#include "WinState.h"
 
+bool whoWon;
 ball::ball(score* score1, score* score2, player* player1, player* player2) {
 	this->Load("Ball.png");
 
@@ -37,16 +39,18 @@ void ball::Update(sf::RenderWindow* window) {
 
 	if (this->getPosition().x < -10) {
 		this->score2->PlusOne();
+		whoWon = true;
 		this->soundGoal->play();
 		this->setPosition(window->getSize().x / 2 - 15, window->getSize().y / 2 - 30);
-		this->velocity.x = -0.75f;
+		this->velocity.x = -1.75f;
 	}
 
 	if (this->getPosition().x >790) {
 		this->score1->PlusOne();
+		whoWon = false;
 		this->soundGoal->play();
 		this->setPosition(window->getSize().x / 2 - 15, window->getSize().y / 2 - 30);
-		this->velocity.x = 0.75f;
+		this->velocity.x = 1.75f;
 	}
 	GameObject::Update();
 }
