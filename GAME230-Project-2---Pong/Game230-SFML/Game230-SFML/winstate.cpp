@@ -55,10 +55,10 @@ void win_state::Render(sf::RenderWindow* window) {
 	this->win2->setFillColor(sf::Color::Blue);
 	this->esc->setFillColor(sf::Color::White);
 	this->playAgain->setFillColor(sf::Color::White);
-	if (whoWon == true) {
+	if (whoWon == true || whoWin == true) {
 		window->draw(*this->win2);
 	}
-	if (whoWon == false) {
+	if (whoWon == false || whoWin == false) {
 		window->draw(*this->win1);
 	}
 	window->draw(*this->gameOver);

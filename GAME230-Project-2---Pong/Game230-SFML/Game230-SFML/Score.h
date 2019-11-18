@@ -12,3 +12,4 @@ private:
 };
 extern bool win;
 extern bool whoWon;
+extern bool whoWin;

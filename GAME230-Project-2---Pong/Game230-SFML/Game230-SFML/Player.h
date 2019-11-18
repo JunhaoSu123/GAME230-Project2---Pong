@@ -7,4 +7,5 @@ public:
 	void Update();
 private:
 	int playerNum;
+
 };

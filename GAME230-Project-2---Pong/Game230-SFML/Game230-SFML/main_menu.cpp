@@ -1,6 +1,8 @@
 #include <iostream>
 #include"Main_Menu.h"
 #include"Game_Play.h"
+#include"Game_State.h"
+#include"Game_Ai.h"
 
 void main_menu::Initialize(sf::RenderWindow* window) {
 	
@@ -51,7 +53,7 @@ void main_menu::Update(sf::RenderWindow* window) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)) {
 		switch (this->ButtonSelect) {
 		case 0:
-			//Ai = true;
+			coreState.SetState(new game_ai());
 			break;
 		case 1:
 			coreState.SetState(new game_play());

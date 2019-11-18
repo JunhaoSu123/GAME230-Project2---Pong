@@ -1,7 +1,7 @@
 #include "player.h"
 #include"Game_State.h"
+#include"Ball.h"
 
-bool Ai = false;
 player::player(int playerNum)
 {
 	this->playerNum = playerNum;
@@ -15,9 +15,11 @@ player::player(int playerNum)
 		break;
 	}
 }
+//void player::Setball(ball* ballObject) {
+	//this->ballObject = ballObject;
+//}
 
-void player::Update()
-{
+void player::Update(){
 	switch (this->playerNum)
 	{
 	case 0:
@@ -26,7 +28,7 @@ void player::Update()
 	case 1:
 		this->velocity.y = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) - sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up);
 		break;
-	}
+		}
 	GameObject::Update();
 
 	if (this->getPosition().y < 0)

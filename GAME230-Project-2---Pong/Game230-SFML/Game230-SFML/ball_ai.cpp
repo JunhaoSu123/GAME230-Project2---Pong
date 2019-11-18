@@ -1,6 +1,10 @@
-#include "Ball_AI.h"
+#include "Ball_Ai.h"
 #include"Score.h"
+#include"Game_State.h"
+#include"Main_Menu.h"
+#include "WinState.h"
 
+bool whoWin;
 ball_ai::ball_ai(score* score1, score* score2, paddle* player1, paddle* player2) {
 	this->Load("Ball.png");
 
@@ -10,7 +14,7 @@ ball_ai::ball_ai(score* score1, score* score2, paddle* player1, paddle* player2)
 	this->player1 = player1;
 	this->player2 = player2;
 
-	this->velocity.x = 0.75f;
+	this->velocity.x = 1.75f;
 	this->velocity.y = -0.45f;
 
 	this->bufferBounce = new sf::SoundBuffer();
@@ -35,16 +39,18 @@ void ball_ai::Update(sf::RenderWindow* window) {
 
 	if (this->getPosition().x < -10) {
 		this->score2->PlusOne();
+		whoWin = true;
 		this->soundGoal->play();
 		this->setPosition(window->getSize().x / 2 - 15, window->getSize().y / 2 - 30);
-		this->velocity.x = -0.75f;
+		this->velocity.x = -1.75f;
 	}
 
 	if (this->getPosition().x > 790) {
 		this->score1->PlusOne();
+		whoWin = false;
 		this->soundGoal->play();
 		this->setPosition(window->getSize().x / 2 - 15, window->getSize().y / 2 - 30);
-		this->velocity.x = 0.75f;
+		this->velocity.x = 1.75f;
 	}
 	GameObject::Update();
 }

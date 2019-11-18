@@ -149,7 +149,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ai.cpp" />
     <ClCompile Include="ball.cpp" />
+    <ClCompile Include="ball_ai.cpp" />
+    <ClCompile Include="game_ai.cpp" />
     <ClCompile Include="game_play.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu.cpp" />
@@ -158,8 +161,11 @@
     <ClCompile Include="winstate.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ai.h" />
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Ball_Ai.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Game_Ai.h" />
     <ClInclude Include="Game_Play.h" />
     <ClInclude Include="Game_State.h" />
     <ClInclude Include="Main_Menu.h" />
