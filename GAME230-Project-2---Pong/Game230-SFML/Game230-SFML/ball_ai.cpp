@@ -4,7 +4,6 @@
 #include"Main_Menu.h"
 #include "WinState.h"
 
-bool whoWin;
 ball_ai::ball_ai(score* score1, score* score2, paddle* player1, paddle* player2) {
 	this->Load("Ball.png");
 
@@ -39,7 +38,7 @@ void ball_ai::Update(sf::RenderWindow* window) {
 
 	if (this->getPosition().x < -10) {
 		this->score2->PlusOne();
-		whoWin = true;
+		whoWon = true;
 		this->soundGoal->play();
 		this->setPosition(window->getSize().x / 2 - 15, window->getSize().y / 2 - 30);
 		this->velocity.x = -1.75f;
@@ -47,7 +46,7 @@ void ball_ai::Update(sf::RenderWindow* window) {
 
 	if (this->getPosition().x > 790) {
 		this->score1->PlusOne();
-		whoWin = false;
+		whoWon = false;
 		this->soundGoal->play();
 		this->setPosition(window->getSize().x / 2 - 15, window->getSize().y / 2 - 30);
 		this->velocity.x = 1.75f;

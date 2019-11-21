@@ -3,6 +3,7 @@
 #include"Player.h"
 #include"Ball.h"
 #include"Score.h"
+#include"Obstacle.h"
 
 class game_play : public tiny_state {
 public:
@@ -16,8 +17,9 @@ private:
 	player* player1;
 	player* player2;
 	ball* ballObject;
-	score* score1;
-	score* score2;
+	score* score3;
+	score* socre4;
+	obstacle* ob;
 
 	sf::Font* font;
 

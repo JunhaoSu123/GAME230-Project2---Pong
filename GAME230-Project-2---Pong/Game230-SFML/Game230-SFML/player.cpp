@@ -15,9 +15,6 @@ player::player(int playerNum)
 		break;
 	}
 }
-//void player::Setball(ball* ballObject) {
-	//this->ballObject = ballObject;
-//}
 
 void player::Update(){
 	switch (this->playerNum)

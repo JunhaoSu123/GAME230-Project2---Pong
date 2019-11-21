@@ -5,14 +5,15 @@
 #include "WinState.h"
 
 bool whoWon;
-ball::ball(score* score1, score* score2, player* player1, player* player2) {
+ball::ball(score* score3, score* socre4, player* player1, player* player2, obstacle* ob) {
 	this->Load("Ball.png");
 
-	this->score1 = score1;
-	this->score2 = score2;
+	this->score3 = score3;
+	this->socre4 = socre4;
 
 	this->player1 = player1;
 	this->player2 = player2;
+	this->ob = ob;
 
 	this->velocity.x = 1.75f;
 	this->velocity.y = -0.45f;
@@ -26,9 +27,15 @@ ball::ball(score* score1, score* score2, player* player1, player* player2) {
 	this->soundGoal = new sf::Sound(*this->bufferGoal);
 
 }
+
 void ball::Update(sf::RenderWindow* window) {
 	if (this->CollisionCheck(this->player1) || this->CollisionCheck(this->player2)) {
-		this->velocity.x *= -1.1f;
+		this->velocity.x *= -1.05f;
+		this->soundBounce->play();
+	}
+
+	if (this->CollisionCheck(this->ob)) {
+		this->velocity.x *= -1.0f;
 		this->soundBounce->play();
 	}
 
@@ -38,18 +45,18 @@ void ball::Update(sf::RenderWindow* window) {
 	}
 
 	if (this->getPosition().x < -10) {
-		this->score2->PlusOne();
+		this->socre4->PlusOne();
 		whoWon = true;
 		this->soundGoal->play();
-		this->setPosition(window->getSize().x / 2 - 15, window->getSize().y / 2 - 30);
+		this->setPosition(window->getSize().x / 2-50, window->getSize().y / 2 - 30);
 		this->velocity.x = -1.75f;
 	}
 
 	if (this->getPosition().x >790) {
-		this->score1->PlusOne();
+		this->score3->PlusOne();
 		whoWon = false;
 		this->soundGoal->play();
-		this->setPosition(window->getSize().x / 2 - 15, window->getSize().y / 2 - 30);
+		this->setPosition(window->getSize().x / 2+2, window->getSize().y / 2 - 30);
 		this->velocity.x = 1.75f;
 	}
 	GameObject::Update();

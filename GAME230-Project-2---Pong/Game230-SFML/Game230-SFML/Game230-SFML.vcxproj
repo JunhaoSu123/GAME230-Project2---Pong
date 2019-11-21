@@ -156,6 +156,7 @@
     <ClCompile Include="game_play.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu.cpp" />
+    <ClCompile Include="obstacle.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="score.cpp" />
     <ClCompile Include="winstate.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Game_Play.h" />
     <ClInclude Include="Game_State.h" />
     <ClInclude Include="Main_Menu.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Score.h" />

@@ -5,6 +5,8 @@
 #include"Main_Menu.h"
 #include"Score.h"
 #include"GameObject.h"
+#include"Game_Ai.h"
+#include"Game_State.h"
 
 
 void win_state::Initialize(sf::RenderWindow* window) {
@@ -41,7 +43,12 @@ void win_state::Update(sf::RenderWindow* window) {
 		coreState.SetState(new main_menu());
 		win = false;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+	if (aiActive && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
+		coreState.SetState(new game_ai());
+		aiActive = false;
+		win = false;
+	}
+	 else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
 		coreState.SetState(new game_play());
 		win = false;
 	}
@@ -55,12 +62,13 @@ void win_state::Render(sf::RenderWindow* window) {
 	this->win2->setFillColor(sf::Color::Blue);
 	this->esc->setFillColor(sf::Color::White);
 	this->playAgain->setFillColor(sf::Color::White);
-	if (whoWon == true || whoWin == true) {
+	if (whoWon == true) {
 		window->draw(*this->win2);
 	}
-	if (whoWon == false || whoWin == false) {
+	if (whoWon == false){
 		window->draw(*this->win1);
 	}
+
 	window->draw(*this->gameOver);
 	window->draw(*this->esc);
 	window->draw(*this->playAgain);

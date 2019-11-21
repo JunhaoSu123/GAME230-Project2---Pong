@@ -4,6 +4,8 @@
 #include"Game_State.h"
 #include"Game_Ai.h"
 
+bool obActive = false;
+bool aiActive = false;
 void main_menu::Initialize(sf::RenderWindow* window) {
 	
 	this->ButtonSelect = 0;
@@ -53,13 +55,19 @@ void main_menu::Update(sf::RenderWindow* window) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Return)) {
 		switch (this->ButtonSelect) {
 		case 0:
+			aiActive = true;
+			obActive = false;
 			coreState.SetState(new game_ai());
 			break;
 		case 1:
+			aiActive = false;
+			obActive = false;
 			coreState.SetState(new game_play());
 			break;
 		case 2:
-			//coreState.SetState(new game_play_ai());
+			aiActive = false;
+			obActive = true;
+			coreState.SetState(new game_play());
 			break;
 		case 3:
 			//coreState.SetState(new game_play());
