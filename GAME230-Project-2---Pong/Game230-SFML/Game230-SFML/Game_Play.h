@@ -4,6 +4,7 @@
 #include"Ball.h"
 #include"Score.h"
 #include"Obstacle.h"
+#include"Hole.h"
 
 class game_play : public tiny_state {
 public:
@@ -20,7 +21,7 @@ private:
 	score* score3;
 	score* socre4;
 	obstacle* ob;
-
+	hole* ho;
 	sf::Font* font;
 
 };

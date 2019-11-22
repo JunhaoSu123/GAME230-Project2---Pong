@@ -4,7 +4,7 @@ ai::ai(int playerNumber)
 {
 	this->playerNumber = playerNumber;
 	this->ballObject = ballObject;
-	this->speed = 0.60f;
+	this->speed = 0.45f;
 
 
 	switch (this->playerNumber)

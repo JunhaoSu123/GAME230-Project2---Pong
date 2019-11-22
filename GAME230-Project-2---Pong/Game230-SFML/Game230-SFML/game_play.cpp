@@ -5,6 +5,7 @@
 #include"WinState.h"
 #include"Game_State.h"
 #include"Obstacle.h"
+#include"Hole.h"
 
 bool win = false;
 bool activeAI = false;
@@ -17,6 +18,9 @@ void game_play::Initialize(sf::RenderWindow* window) {
 	this->ob = new obstacle;
 	this->ob->setPosition(window->getSize().x / 2 - 15, window->getSize().y/2 + 50);
 
+	this->ho = new hole;
+	this->ho->setPosition(window->getSize().x / 2 - 85 , window->getSize().y / 2-120);
+
 	this->socre4->setPosition(window->getSize().x - this->score3->getGlobalBounds().width, 0);
 	
 	this->player1 = new player(0);
@@ -25,7 +29,7 @@ void game_play::Initialize(sf::RenderWindow* window) {
 	this->player1->setPosition(0, 240);
 	this->player2->setPosition(783, 240); 
 
-	this->ballObject = new ball(this->score3, this->socre4, this->player1, this->player2, this->ob);
+	this->ballObject = new ball(this->score3, this->socre4, this->player1, this->player2, this->ob, this->ho);
 	this->ballObject->setPosition(window->getSize().x / 2-15, window->getSize().y / 2-30);
 }
 void game_play::Update(sf::RenderWindow* window) {
@@ -50,11 +54,14 @@ void game_play::Render(sf::RenderWindow* window) {
 	this->player2->setScale(0.25f, 0.5f);
 	this->ballObject->setScale(0.5f, 0.5f);
 	this->ob->setScale(0.25f, 0.5f);
-
+	this->ho->setScale(0.7f, 0.7f);
 	if (obActive) {
 		window->draw(*this->ob);
 	}
 
+	if (hoActive) {
+		window->draw(*this->ho);
+	}
 	window->draw(*this->ballObject);
 	window->draw(*this->player1);
 	window->draw(*this->player2);

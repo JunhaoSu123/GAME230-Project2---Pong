@@ -6,6 +6,7 @@
 
 bool obActive = false;
 bool aiActive = false;
+bool hoActive = false;
 void main_menu::Initialize(sf::RenderWindow* window) {
 	
 	this->ButtonSelect = 0;
@@ -57,20 +58,26 @@ void main_menu::Update(sf::RenderWindow* window) {
 		case 0:
 			aiActive = true;
 			obActive = false;
+			hoActive = false;
 			coreState.SetState(new game_ai());
 			break;
 		case 1:
 			aiActive = false;
 			obActive = false;
+			hoActive = false;
 			coreState.SetState(new game_play());
 			break;
 		case 2:
 			aiActive = false;
 			obActive = true;
+			hoActive = false;
 			coreState.SetState(new game_play());
 			break;
 		case 3:
-			//coreState.SetState(new game_play());
+			aiActive = false;
+			obActive = false;
+			hoActive = true;
+			coreState.SetState(new game_play());
 			break;
 		case 4:
 			quitGame = true;

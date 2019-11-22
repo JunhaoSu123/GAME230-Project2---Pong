@@ -26,8 +26,12 @@ ball_ai::ball_ai(score* score1, score* score2, paddle* player1, paddle* player2)
 
 }
 void ball_ai::Update(sf::RenderWindow* window) {
-	if (this->CollisionCheck(this->player1) || this->CollisionCheck(this->player2)) {
-		this->velocity.x *= -1.1f;
+	if (this->velocity.x < 0 && this->CollisionCheck(this->player1)) {
+		this->velocity.x *= -1.05f;
+		this->soundBounce->play();
+	}
+	if (this->velocity.x > 0 && this->CollisionCheck(this->player2)) {
+		this->velocity.x *= -1.05f;
 		this->soundBounce->play();
 	}
 

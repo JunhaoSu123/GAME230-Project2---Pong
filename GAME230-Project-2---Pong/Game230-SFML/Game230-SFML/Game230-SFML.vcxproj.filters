@@ -48,6 +48,9 @@
     <ClCompile Include="obstacle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_State.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Obstacle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

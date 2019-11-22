@@ -154,6 +154,7 @@
     <ClCompile Include="ball_ai.cpp" />
     <ClCompile Include="game_ai.cpp" />
     <ClCompile Include="game_play.cpp" />
+    <ClCompile Include="hole.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu.cpp" />
     <ClCompile Include="obstacle.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Game_Ai.h" />
     <ClInclude Include="Game_Play.h" />
     <ClInclude Include="Game_State.h" />
+    <ClInclude Include="Hole.h" />
     <ClInclude Include="Main_Menu.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Paddle.h" />

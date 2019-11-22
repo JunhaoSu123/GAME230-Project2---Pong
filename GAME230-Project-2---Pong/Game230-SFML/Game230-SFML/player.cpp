@@ -36,4 +36,5 @@ void player::Update(){
 	{
 		this->move(0, -1.0f);
 	}
+	//paddleCenter = (this->getPosition().y + this->getGlobalBounds().height / 2);
 }

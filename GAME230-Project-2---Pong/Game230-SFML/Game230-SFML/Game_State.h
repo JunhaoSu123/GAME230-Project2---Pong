@@ -70,3 +70,4 @@ extern game_state coreState;
 extern bool quitGame;
 extern bool	obActive;
 extern bool aiActive;
+extern bool hoActive;

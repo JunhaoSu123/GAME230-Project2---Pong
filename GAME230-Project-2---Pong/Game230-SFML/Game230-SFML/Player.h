@@ -9,3 +9,4 @@ private:
 	int playerNum;
 
 };
+//extern float paddleCenter;
