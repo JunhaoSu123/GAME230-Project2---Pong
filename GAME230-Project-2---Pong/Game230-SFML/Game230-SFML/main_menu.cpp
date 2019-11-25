@@ -59,24 +59,28 @@ void main_menu::Update(sf::RenderWindow* window) {
 			aiActive = true;
 			obActive = false;
 			hoActive = false;
+			powerUp = false;
 			coreState.SetState(new game_ai());
 			break;
 		case 1:
 			aiActive = false;
 			obActive = false;
 			hoActive = false;
+			powerUp = true;
 			coreState.SetState(new game_play());
 			break;
 		case 2:
 			aiActive = false;
 			obActive = true;
 			hoActive = false;
+			powerUp = false;
 			coreState.SetState(new game_play());
 			break;
 		case 3:
 			aiActive = false;
 			obActive = false;
 			hoActive = true;
+			powerUp = false;
 			coreState.SetState(new game_play());
 			break;
 		case 4:

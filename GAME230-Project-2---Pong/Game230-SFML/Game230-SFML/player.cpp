@@ -21,9 +21,11 @@ void player::Update(){
 	{
 	case 0:
 		this->velocity.y = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) - sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W);
+		paddleCenter1 = (this->getPosition().y + this->getGlobalBounds().height / 2);
 		break;
 	case 1:
 		this->velocity.y = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down) - sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up);
+		paddleCenter2 = (this->getPosition().y + this->getGlobalBounds().height / 2);
 		break;
 		}
 	GameObject::Update();
@@ -36,5 +38,4 @@ void player::Update(){
 	{
 		this->move(0, -1.0f);
 	}
-	//paddleCenter = (this->getPosition().y + this->getGlobalBounds().height / 2);
 }

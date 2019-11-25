@@ -71,3 +71,6 @@ extern bool quitGame;
 extern bool	obActive;
 extern bool aiActive;
 extern bool hoActive;
+extern bool powerUp;
+extern bool p1power;
+extern bool p2power;

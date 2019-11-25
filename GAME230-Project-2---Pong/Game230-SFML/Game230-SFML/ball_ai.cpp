@@ -3,7 +3,7 @@
 #include"Game_State.h"
 #include"Main_Menu.h"
 #include "WinState.h"
-
+float ballaiCenter;
 ball_ai::ball_ai(score* score1, score* score2, paddle* player1, paddle* player2) {
 	this->Load("Ball.png");
 
@@ -27,11 +27,45 @@ ball_ai::ball_ai(score* score1, score* score2, paddle* player1, paddle* player2)
 }
 void ball_ai::Update(sf::RenderWindow* window) {
 	if (this->velocity.x < 0 && this->CollisionCheck(this->player1)) {
-		this->velocity.x *= -1.05f;
+
+		if (ballaiCenter < this->player1->getPosition().y + this->player1->getGlobalBounds().height / 3) {
+			if (this->velocity.y > 0) {
+				this->velocity.y *= -1.03f;
+			}
+			if (this->velocity.y < 0) {
+				this->velocity.y *= 1.03f;
+			}
+		}
+		if (ballaiCenter > this->player1->getPosition().y + this->player1->getGlobalBounds().height / 2) {
+			if (this->velocity.y < 0) {
+				this->velocity.y *= -1.03f;
+			}
+			if (this->velocity.y > 0) {
+				this->velocity.y *= 1.03f;
+			}
+		}
+
+		this->velocity.x *= -1.03f;
 		this->soundBounce->play();
 	}
 	if (this->velocity.x > 0 && this->CollisionCheck(this->player2)) {
-		this->velocity.x *= -1.05f;
+		if (ballaiCenter < this->player2->getPosition().y + this->player2->getGlobalBounds().height / 3) {
+			if (this->velocity.y > 0) {
+				this->velocity.y *= -1.03f;
+			}
+			if (this->velocity.y < 0) {
+				this->velocity.y *= 1.03f;
+			}
+		}
+		if (ballaiCenter > this->player2->getPosition().y + this->player2->getGlobalBounds().height / 2) {
+			if (this->velocity.y < 0) {
+				this->velocity.y *= -1.03f;
+			}
+			if (this->velocity.y > 0) {
+				this->velocity.y *= 1.03f;
+			}
+		}
+		this->velocity.x *= -1.03f;
 		this->soundBounce->play();
 	}
 
@@ -56,6 +90,7 @@ void ball_ai::Update(sf::RenderWindow* window) {
 		this->velocity.x = 1.75f;
 	}
 	GameObject::Update();
+	ballaiCenter = this->getPosition().y + this->getGlobalBounds().height / 2;
 }
 ball_ai::~ball_ai() {
 	delete this->bufferBounce;

@@ -9,4 +9,5 @@ private:
 	int playerNum;
 
 };
-//extern float paddleCenter;
+extern float paddleCenter1;
+extern float paddleCenter2;

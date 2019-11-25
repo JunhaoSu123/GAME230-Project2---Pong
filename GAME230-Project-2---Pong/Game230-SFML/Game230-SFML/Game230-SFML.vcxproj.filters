@@ -51,6 +51,9 @@
     <ClCompile Include="hole.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="powerup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_State.h">
@@ -93,6 +96,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Hole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

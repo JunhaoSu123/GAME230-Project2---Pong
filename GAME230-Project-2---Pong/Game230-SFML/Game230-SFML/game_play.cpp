@@ -6,9 +6,14 @@
 #include"Game_State.h"
 #include"Obstacle.h"
 #include"Hole.h"
+#include"PowerUp.h"
 
 bool win = false;
 bool activeAI = false;
+bool powerUp = true;
+bool p1power = false;
+bool p2power = false;
+
 void game_play::Initialize(sf::RenderWindow* window) {
 	this->font = new sf::Font();
 	this->font->loadFromFile("font.otf");
@@ -21,6 +26,9 @@ void game_play::Initialize(sf::RenderWindow* window) {
 	this->ho = new hole;
 	this->ho->setPosition(window->getSize().x / 2 - 85 , window->getSize().y / 2-120);
 
+	this->pu = new powerup;
+	this->pu->setPosition(window->getSize().x / 2 - 100, window->getSize().y / 2 - 50);
+
 	this->socre4->setPosition(window->getSize().x - this->score3->getGlobalBounds().width, 0);
 	
 	this->player1 = new player(0);
@@ -29,7 +37,7 @@ void game_play::Initialize(sf::RenderWindow* window) {
 	this->player1->setPosition(0, 240);
 	this->player2->setPosition(783, 240); 
 
-	this->ballObject = new ball(this->score3, this->socre4, this->player1, this->player2, this->ob, this->ho);
+	this->ballObject = new ball(this->score3, this->socre4, this->player1, this->player2, this->ob, this->ho, this->pu);
 	this->ballObject->setPosition(window->getSize().x / 2-15, window->getSize().y / 2-30);
 }
 void game_play::Update(sf::RenderWindow* window) {
@@ -41,6 +49,7 @@ void game_play::Update(sf::RenderWindow* window) {
 	this->socre4->Update();
 	this->score3->WinCheck();
 	this->socre4->WinCheck();
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
 		coreState.SetState(new main_menu());
 	}
@@ -55,12 +64,27 @@ void game_play::Render(sf::RenderWindow* window) {
 	this->ballObject->setScale(0.5f, 0.5f);
 	this->ob->setScale(0.25f, 0.5f);
 	this->ho->setScale(0.7f, 0.7f);
+	if (p1power) {
+		this->player1->setScale(0.25f, 0.8f);
+	}
+	if (p2power) {
+		this->player2->setScale(0.25f, 0.8f);
+	}
+	if (powerUp) {
+		window->draw(*this->pu);
+		this->player1->setScale(0.25f, 0.5f);
+		this->player2->setScale(0.25f, 0.5f);
+	}
 	if (obActive) {
 		window->draw(*this->ob);
+		this->player1->setScale(0.25f, 0.5f);
+		this->player2->setScale(0.25f, 0.5f);
 	}
 
 	if (hoActive) {
 		window->draw(*this->ho);
+		this->player1->setScale(0.25f, 0.5f);
+		this->player2->setScale(0.25f, 0.5f);
 	}
 	window->draw(*this->ballObject);
 	window->draw(*this->player1);
@@ -76,4 +100,5 @@ void game_play::Destroy(sf::RenderWindow* window) {
 	delete this->socre4;
 	delete this->font;
 	delete this->ob;
+	delete this->ho;
 }

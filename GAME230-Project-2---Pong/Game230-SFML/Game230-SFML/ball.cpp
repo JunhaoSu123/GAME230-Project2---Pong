@@ -5,15 +5,17 @@
 #include "WinState.h"
 #include"Player.h"
 #include"Hole.h"
+#include"PowerUp.h"
 
-//float paddleCenter;
-//float ballCenter;
+float paddleCenter1;
+float paddleCenter2;
+float ballCenter;
 //float bounce;
 //float angle;
 bool getOb = false;
 bool getho = false;
 bool whoWon;
-ball::ball(score* score3, score* socre4, player* player1, player* player2, obstacle* ob, hole* ho) {
+ball::ball(score* score3, score* socre4, player* player1, player* player2, obstacle* ob, hole* ho, powerup* pu) {
 	this->Load("Ball.png");
 
 	this->score3 = score3;
@@ -23,9 +25,10 @@ ball::ball(score* score3, score* socre4, player* player1, player* player2, obsta
 	this->player2 = player2;
 	this->ob = ob;
 	this->ho = ho;
+	this->pu = pu;
 
-	this->velocity.x = 1.75f;
-	this->velocity.y = -0.45f;
+	this->velocity.x = 1.0f;
+	this->velocity.y = -0.4f;
 
 	this->bufferBounce = new sf::SoundBuffer();
 	this->bufferBounce->loadFromFile("Sounds/WaterDrop.wav");
@@ -38,13 +41,30 @@ ball::ball(score* score3, score* socre4, player* player1, player* player2, obsta
 }
 
 void ball::Update(sf::RenderWindow* window) {
-	//ballCenter = this->getPosition().y + this->getGlobalBounds().height / 2;
 	//bounce = (paddleCenter - ballCenter)/paddleCenter;
 	//angle = bounce * 1.309f;
 	if (this->velocity.x < 0 && this->CollisionCheck(this->player1)) {
 		//this->velocity.x *= cos(angle);
 		//this->velocity.y *= -sin(angle);
-		this->velocity.x *= -1.05f;
+
+		if (ballCenter < this->player1->getPosition().y+this->player1->getGlobalBounds().height/3) {
+			if (this->velocity.y > 0) {
+				this->velocity.y *= -1.03f;
+			}
+			if (this->velocity.y < 0) {
+				this->velocity.y *= 1.03f;
+			}
+		}
+		if (ballCenter > this->player1->getPosition().y + this->player1->getGlobalBounds().height / 2) {
+			if (this->velocity.y < 0) {
+				this->velocity.y *= -1.03f;
+			}
+			if (this->velocity.y > 0) {
+				this->velocity.y *= 1.03f;
+			}
+		}
+
+		this->velocity.x *= -1.03f;
 		this->soundBounce->play();
 		getOb = true;
 		getho = true;
@@ -52,10 +72,36 @@ void ball::Update(sf::RenderWindow* window) {
 	if (this->velocity.x > 0 && this->CollisionCheck(this->player2)) {
 		//this->velocity.x *= cos(angle);
 		//this->velocity.y *= -sin(angle);
-		this->velocity.x *= -1.05f;
+		if (ballCenter < this->player2->getPosition().y + this->player2->getGlobalBounds().height / 3) {
+			if (this->velocity.y > 0) {
+				this->velocity.y *= -1.03f;
+			}
+			if (this->velocity.y < 0) {
+				this->velocity.y *= 1.03f;
+			}
+		}
+		if (ballCenter > this->player2->getPosition().y + this->player2->getGlobalBounds().height / 2) {
+			if (this->velocity.y < 0) {
+				this->velocity.y *= -1.03f;
+			}
+			if (this->velocity.y > 0) {
+				this->velocity.y *= 1.03f;
+			}
+		}
+		this->velocity.x *= -1.03f;
 		this->soundBounce->play();
 		getOb = true;
 		getho = true;
+	}
+
+	if (powerUp == true && this->CollisionCheck(this->pu)) {
+		if (this->velocity.x > 0) {
+			p1power = true;
+		}
+		if (this->velocity.x < 0) {
+			p2power = true;
+		}
+		powerUp = false;
 	}
 
 	if (obActive == true && getOb == true && this->CollisionCheck(this->ob)) {
@@ -93,8 +139,8 @@ void ball::Update(sf::RenderWindow* window) {
 		getho = false;
 		this->soundGoal->play();
 		this->setPosition(window->getSize().x / 2-50, window->getSize().y / 2 - 30);
-		this->velocity.x = -1.75f;
-		this->velocity.y = -0.45f;
+		this->velocity.x = -1.0f;
+		this->velocity.y = -0.4f;
 	}
 
 	if (this->getPosition().x >790) {
@@ -103,10 +149,11 @@ void ball::Update(sf::RenderWindow* window) {
 		getho = false;
 		this->soundGoal->play();
 		this->setPosition(window->getSize().x / 2+2, window->getSize().y / 2 - 30);
-		this->velocity.x = 1.75f;
-		this->velocity.y = 0.45f;
+		this->velocity.x = 1.0f;
+		this->velocity.y = 0.4f;
 	}
 	GameObject::Update();
+	ballCenter = this->getPosition().y + this->getGlobalBounds().height / 2;
 }
 ball::~ball() {
 	delete this->bufferBounce;
